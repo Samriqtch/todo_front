@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_front/user_list_page.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const MyHomePage(title: 'USERS'),
-      home: UserListPage()
+      home: UserListPage(),
+      routes:  {
+        '/notifications' : (context) => NotificationPage(),
+      },
       //Scaffold (appBar: AppBar(title: 
       //Center(child: Text('Users',style: TextStyle(color: Colors.white),),)
       

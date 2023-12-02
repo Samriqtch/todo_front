@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'api_service.dart';
-
+import 'notification.dart';
 class UserListPage extends StatefulWidget {
   //const UserListPage({Key? key}) : super(key: key);
   final ApiService apiService = ApiService();
@@ -51,6 +51,10 @@ class _UserListPageState extends State<UserListPage> {
               itemBuilder: (context, index) {
                 print((snapshot.data![index]['firstName']));
                 return ListTile(
+                   leading: CircleAvatar(
+                        child: Icon(Icons.person),
+                        backgroundColor: const Color.fromARGB(255, 243, 245, 247), // Vous pouvez changer la couleur de fond ici
+                       ),
                   title: Text(snapshot.data![index]['firstName']),
 //                  subtitle: Text(snapshot.data![index]['firstname']),
                   trailing: IconButton(
@@ -92,6 +96,55 @@ class EditUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Remplacez ceci par le code pour votre page d'édition de l'utilisateur
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(
+          child: Text('Users',style: TextStyle(color: Colors.white),),
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+  items: const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      icon: Icon(Icons.notifications),
+      label: 'Notifications',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.list),
+      label: 'Users',
+    ),
+  ],
+  onTap: (index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NotificationPage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => UserListPage()),
+        );
+        break;
+    }
+  },
+)
+
+    );    
+  }
+}
+
+class NotificationPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notifications'),
+      ),
+      body: Center(
+        child: Text('This is the notifications page'),
+      ),
+    );
   }
 }
