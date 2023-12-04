@@ -59,13 +59,17 @@ class _UserListPageState extends State<UserListPage> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   print((snapshot.data![index]['firstName']));
+                  print('LastName: ${snapshot.data![index]['lastName']}');
+                  print('Age: ${snapshot.data![index]['age']}');
                   return ListTile(
                     leading: CircleAvatar(
                       child: Icon(Icons.person),
                       backgroundColor: const Color.fromARGB(255, 243, 245,
                           247), // Vous pouvez changer la couleur de fond ici
                     ),
-                    title: Text(snapshot.data![index]['firstName']),
+                    title: Text("${snapshot.data![index]['firstName']},${snapshot.data![index]['lastName']}\nAge:${snapshot.data![index]['age']}") ,
+                    //${snapshot.data![index]['age'];}'
+                  
 //                  subtitle: Text(snapshot.data![index]['firstname']),
                     
                     onTap: () {
