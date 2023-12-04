@@ -43,14 +43,14 @@ class NotificationPage extends StatelessWidget {
               return ListView.builder(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
-                  print((snapshot.data![index]['id'].toString()));
+                  print((snapshot.data![index]['message'].toString()));
                   return ListTile(
                     leading: CircleAvatar(
-                      child: Icon(Icons.person),
+                      child: Icon(Icons.notifications,color: const Color.fromARGB(0, 245, 48, 48),),
                       backgroundColor: const Color.fromARGB(255, 243, 245,
                           247), // Vous pouvez changer la couleur de fond ici
                     ),
-                    title: Text(snapshot.data![index]['id'].toString()),
+                    title: Text(snapshot.data![index]['message'].toString()),
 //                  subtitle: Text(snapshot.data![index]['firstname']),
                     
                     onTap: () {
