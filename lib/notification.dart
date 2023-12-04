@@ -3,6 +3,7 @@ import 'dart:core';
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'api_service.dart';
@@ -46,9 +47,20 @@ class NotificationPage extends StatelessWidget {
                   print((snapshot.data![index]['message'].toString()));
                   return ListTile(
                     leading: CircleAvatar(
-                      child: Icon(Icons.notifications,color: const Color.fromARGB(0, 245, 48, 48),),
-                      backgroundColor: const Color.fromARGB(255, 243, 245,
-                          247), // Vous pouvez changer la couleur de fond ici
+                        child: Icon(FontAwesomeIcons.solidBell,
+                        color:Colors.white,),
+                      /*child: Container(
+                        padding:EdgeInsets.all(1.0),
+                        decoration:BoxDecoration(
+                        
+                        border: Border.all(
+                        color: Colors.black,
+                        width: 2.0),
+                        
+                        shape: BoxShape.rectangle,
+                        ),
+                        child: Icon(Icons.notifications,color: Colors.white,),),*/
+                        backgroundColor: Colors.grey, // Vous pouvez changer la couleur de fond ici
                     ),
                     title: Text(snapshot.data![index]['message'].toString()),
 //                  subtitle: Text(snapshot.data![index]['firstname']),
@@ -78,7 +90,7 @@ class NotificationPage extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.group),
               label: 'User List',
             ),
             BottomNavigationBarItem(

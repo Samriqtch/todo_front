@@ -104,7 +104,7 @@ class _UserListPageState extends State<UserListPage> {
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.list),
+              icon: Icon(Icons.group),
               label: 'User List',
             ),
             BottomNavigationBarItem(
