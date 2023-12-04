@@ -15,7 +15,8 @@ import 'create_user.dart';
 
 class CreateUserPage extends StatelessWidget {
   const CreateUserPage({super.key});
-    Future<List<dynamic>> postUsers() async {
+
+  Future<List<dynamic>> postUsers() async {
     final response =
         await http.post(Uri.parse('http://192.168.1.76:3000/users'));
 
@@ -28,6 +29,10 @@ class CreateUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firstNameController = TextEditingController();
+    final lastNameController = TextEditingController();
+    final ageController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -41,8 +46,43 @@ class CreateUserPage extends StatelessWidget {
         )),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text('This is the Create User Page'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            TextField(
+              controller: firstNameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'First Name',
+              ),
+            ),
+            SizedBox(height: 16.0), // Add space between the fields
+            TextField(
+              controller: lastNameController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Last Name',
+              ),
+            ),
+            SizedBox(height: 16.0), // Add space between the fields
+            TextField(
+              controller: ageController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Age',
+              ),
+            ),
+            SizedBox(height: 16.0), // Add space between the fields
+            ElevatedButton(
+              onPressed: () {
+                // Handle save action here
+              },
+              child: Text('Save'),
+            ),
+          ],
+        ),
       ),
     );
   }
