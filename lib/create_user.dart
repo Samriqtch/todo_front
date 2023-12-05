@@ -18,7 +18,7 @@ class CreateUserPage extends StatelessWidget {
 
   Future<List<dynamic>> postUsers() async {
     final response =
-        await http.post(Uri.parse('http://192.168.1.76:3000/users'));
+        await http.post(Uri.parse('http://192.168.1.72:3000/users'));
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -75,11 +75,22 @@ class CreateUserPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16.0), // Add space between the fields
-            ElevatedButton(
-              onPressed: () {
-                // Handle save action here
-              },
-              child: Text('Save'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 14, 13, 13)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    )
+                  ),
+                ),
+                onPressed: () {
+                  // Handle delete user action here
+                },
+                child: Text('Save', style: TextStyle(color: const Color.fromARGB(255, 248, 244, 244))),
+              ),
             ),
           ],
         ),
