@@ -79,17 +79,39 @@ class CreateUserPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 14, 13, 13)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 14, 13, 13)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    )
-                  ),
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  )),
                 ),
-                onPressed: () {
-                  // Handle delete user action here
+                onPressed: () async {
+                  final response = await http.post(
+                    Uri.parse('http://192.168.1.72:3000/users'),
+                    headers: <String, String>{
+                      'Content-Type': 'application/json; charset=UTF-8',
+                    },
+                    body: jsonEncode(<String, String>{
+                      'firstName': firstNameController.text,
+                      'lastName': lastNameController.text,
+                      'age': ageController.text,
+                    }),
+                  );
+                      if (response.statusCode == 201) {
+                                // If the server returns a CREATED response, then parse the JSON.
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('User created successfully')),
+                                );
+                              } else {
+                                // If the server did not return a CREATED response,
+                                // then throw an exception.
+                                throw Exception('Failed to create user');
+                      }
                 },
-                child: Text('Save', style: TextStyle(color: const Color.fromARGB(255, 248, 244, 244))),
+                child: Text('Save',
+                    style: TextStyle(
+                        color: const Color.fromARGB(255, 248, 244, 244))),
               ),
             ),
           ],
