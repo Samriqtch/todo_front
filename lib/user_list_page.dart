@@ -4,6 +4,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:todo_front/user_profile.dart';
 import 'dart:convert';
 import 'api_service.dart';
 import 'notification.dart';
@@ -24,7 +25,7 @@ class _UserListPageState extends State<UserListPage> {
   late Future<List> futureUsers;
   Future<List> fetchUsers() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.76:3000/users'));
+        await http.get(Uri.parse('http://192.168.1.72:3000/users'));
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -78,7 +79,7 @@ class _UserListPageState extends State<UserListPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              EditUserPage(user: snapshot.data![index]),
+                              UserProfilPage(user: snapshot.data![index]),
                         ),
                       );
                     },
@@ -136,19 +137,7 @@ class _UserListPageState extends State<UserListPage> {
   }
 }
 
-class EditUserPage extends StatelessWidget {
-  final Map<String, dynamic> user;
 
-  const EditUserPage({Key? key, required this.user}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // Remplacez ceci par le code pour votre page d'édition de l'utilisateur
-    return Scaffold(
-        
-        );
-  }
-}
 
 /*class CreateUserPage extends StatelessWidget {
   const CreateUserPage({super.key});
