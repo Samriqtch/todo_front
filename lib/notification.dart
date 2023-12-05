@@ -16,7 +16,7 @@ import 'create_user.dart';
 class NotificationPage extends StatelessWidget {
   Future<List<dynamic>> getNotifications() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.76:3000/notification'));
+        await http.get(Uri.parse('http://192.168.1.72:3000/notification'));
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -65,16 +65,7 @@ class NotificationPage extends StatelessWidget {
                     title: Text(snapshot.data![index]['message'].toString()),
 //                  subtitle: Text(snapshot.data![index]['firstname']),
                     
-                    onTap: () {
-                      // Naviguez vers une nouvelle page pour éditer le profil de l'utilisateur
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              EditUserPage(user: snapshot.data![index]),
-                        ),
-                      );
-                    },
+
                   );
                 },
               );
